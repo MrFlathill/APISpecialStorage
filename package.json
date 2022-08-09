@@ -1,0 +1,28 @@
+{
+    "name": "apispecialstorage",
+    "version": "1.0.0",
+    "description": "This is the API of Marani, here you can find all the Data that belongs to the \"Sonder Speicher\" Project. IMPORTANT: highly sensible Data.",
+    "main": "api.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "API",
+        "Marani",
+        "SonderSpeicher"
+    ],
+    "author": "Maximilian Ebenkofler",
+    "license": "MIT 2022",
+    "dependencies": {
+        "body-parser": "^1.20.0",
+        "dotenv": "^16.0.1",
+        "express": "^4.18.1",
+        "express-xml-bodyparser": "^0.3.0",
+        "js-yaml": "^4.1.0",
+        "jsontoxml": "^1.0.1",
+        "jwt-decode": "^3.1.2",
+        "moment": "^2.29.3",
+        "mysql2": "^2.3.3",
+        "swagger-ui-express": "^4.5.0"
+    }
+}

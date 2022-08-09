@@ -1,0 +1,164 @@
+swagger: "2.0"
+info:
+  description: "Documentaion of the official MARANI G. API with all his Endpoints"
+  version: "1.0.0"
+  title: "Marani G. API"
+  license:
+    name: "MIT"
+    url: "https://opensource.org/licenses/MIT"
+
+host: "localhost:8090"
+basePath: "/api/v1"
+
+tags:
+- name: "bottoms"
+  description: "Everything to set and work with Bottoms"
+- name: "tank"
+  description: "Everything to set and work with Tanks"
+- name: "clients"
+  description: "Everything to set and work with Clients"
+
+schemes:
+- "http"
+
+paths:
+  /bottom:
+    get:
+      tags:
+      - "bottoms"
+      summary: "Returns all existing articles."
+      produces:
+      - "application/json"
+      - "application/xml"
+      responses:
+        '200':
+          description: "successful operation"
+          schema:
+            $ref: '#/definitions/BottomArray'
+        '400':
+          description: "Bad request"
+        '500':
+          description: "Database error"
+
+    post:
+      tags:
+      - "bottoms"
+      summary: "Erstellt einen neuen Artikel"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Bottom Object to be changed"
+        required: true
+        schema:
+          $ref: "#/definitions/Bottom"
+      responses:
+        '201':
+          description: "Created"
+        '400':
+          description: "Bad request"
+        '500':
+          description: "Database error"
+
+    put:
+      tags:
+        - "bottoms"
+      summary: "Updates an existing bottom"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Bottom Object to be changed"
+        required: true
+        schema:
+          $ref: "#/definitions/Bottom"
+      responses:
+        '200':
+          description: "successfully updated"
+        '400':
+          description: "Bad request"
+        '500':
+          description: "Database error"
+
+  /bottom/{bid}:
+    get:
+      tags:
+      - "bottoms"
+      summary: "Gibt einen spezifischen Artikel zurück"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - name: "bid"
+        in: "path"
+        description: "ID od the itam to be returned"
+        required: true
+        type: "integer"
+      responses:
+        '200':
+          description: "successful operation"
+          schema:
+            $ref: '#/definitions/Bottom'
+        '400':
+          description: "Bad request"
+        '500':
+          description: "Database error"
+    
+    delete:
+      tags:
+        - "bottoms"
+      summary: "Löscht einen spezifischen Artikel"
+      produces:
+      - "application/json"
+      - "application/xml"
+      parameters:
+      - name: "bid"
+        in: "path"
+        description: "ID of the item to be deleted"
+        required: true
+        type: "integer"
+      responses:
+        '204':
+          description: "successful operation"
+        '400':
+          description: "Bad request"
+        '500':
+          description: "Database error"
+
+definitions:
+  Bottom:
+    type: "object"
+    properties:
+      bid:
+        type: "integer"
+        example: 12
+      bname:
+        type: "string"
+        example: "FONDO850X2,5TDB"
+      bdescription:
+        type: "string"
+        example: "FONDO Ø 850 X 25/10 TD BORD."
+      bheight:
+        type: "integer"
+        example: 190
+      bdiameter:
+        type: "integer"
+        example: 850
+      bvolume:
+        type: "number"
+        example: 78.4
+      bprice:
+        type: "number"
+        example: 37.29
+
+  BottomArray:
+    type: "array"
+    items:
+      $ref: '#/definitions/Bottom'
+
